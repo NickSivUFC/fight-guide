@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="dark" name="color-scheme"/>
+<link href="data:," rel="icon"/>
+<title>DWCS 92 — Contender Series Fight Guide</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+    :root{
+      --ink:#f5f2ea; --muted:#b8b4aa; --dim:#77736c; --paper:#0d0e0f;
+      --panel:#151617; --panel2:#1b1c1d; --line:#353638; --red:#ee2d2f;
+      --green:#42d18a; --amber:#f4b942; --blue:#68a9ff; --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans",sans-serif;line-height:1.5;overflow-x:hidden}
+    a{color:inherit;text-decoration-color:#666;text-underline-offset:3px}
+    button{font:inherit}
+    .wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+    .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);padding:42px 0 34px;background:
+      repeating-linear-gradient(135deg,transparent 0 24px,rgba(255,255,255,.025) 24px 25px),#111213}
+    .hero:after{content:"";position:absolute;width:430px;height:430px;border:44px solid rgba(238,45,47,.12);transform:rotate(30deg);right:-170px;top:-215px}
+    .eyebrow{display:flex;align-items:center;gap:10px;font-size:.78rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#d7d2c8}
+    .live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(66,209,138,.17)}
+    .hero-grid{display:grid;grid-template-columns:1.4fr .8fr;gap:56px;align-items:end;position:relative;z-index:1}
+    h1,h2,h3,.display{font-family:"Barlow Condensed",sans-serif}
+    h1{font-size:clamp(3.8rem,9vw,7.6rem);line-height:.78;text-transform:uppercase;margin:26px 0 20px;letter-spacing:-.045em}
+    h1 span{display:block;color:var(--red)}
+    .dek{max-width:640px;color:#cfcbc2;font-size:1.04rem;margin:0}
+    .event-stamp{border-left:5px solid var(--red);padding:4px 0 4px 22px}
+    .stamp-label{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
+    .stamp-big{font-family:"Barlow Condensed";font-size:2.1rem;font-weight:800;text-transform:uppercase;margin:2px 0}
+    .stamp-meta{color:var(--muted);font-size:.9rem}
+    .fact-strip{background:#090a0a;border-bottom:1px solid var(--line)}
+    .facts{display:grid;grid-template-columns:repeat(4,1fr)}
+    .fact{padding:18px 20px;border-right:1px solid var(--line)}
+    .fact:first-child{padding-left:0}.fact:last-child{border-right:0}
+    .fact b{display:block;font-family:"Barlow Condensed";font-size:1.25rem;line-height:1.1;text-transform:uppercase}
+    .fact span{font-size:.74rem;color:var(--muted)}
+    .nav-shell{position:sticky;top:0;z-index:20;background:rgba(13,14,15,.95);border-bottom:1px solid var(--line)}
+    .nav{display:flex;gap:5px;padding:9px 0;overflow:visible}
+    .nav a{border:0;background:transparent;color:var(--muted);padding:10px 14px;border-radius:3px;cursor:pointer;font-weight:700;font-size:.82rem;text-decoration:none}
+    .nav a.active{background:var(--red);color:#fff}
+    .nav a:focus-visible,.source:focus-visible,.source-card a:focus-visible,.fight summary:focus-visible,.filter:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+    body:has(.view:target) .nav a.active{background:transparent;color:var(--muted)}
+    body:has(#overview:target) .nav a[href="#overview"],body:has(#card:target) .nav a[href="#card"],body:has(#picks:target) .nav a[href="#picks"],body:has(#sources:target) .nav a[href="#sources"]{background:var(--red);color:#fff}
+    main{padding:34px 0 70px}
+    .view{display:none;scroll-margin-top:70px}.view.active,.view:target{display:block}
+    main:has(.view:target) .view.active:not(:target){display:none}
+    .section-head{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:end;margin:0 0 18px}
+    h2{font-size:clamp(2.2rem,5vw,4rem);line-height:.9;text-transform:uppercase;letter-spacing:-.025em;margin:0}
+    .section-note{color:var(--muted);font-size:.82rem;max-width:460px;text-align:right}
+    .grid-2{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    .panel{background:var(--panel);border:1px solid var(--line);padding:24px}
+    .panel.feature{border-top:5px solid var(--red)}
+    .kicker{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--red);font-weight:800}
+    .panel h3{font-size:1.65rem;line-height:1;text-transform:uppercase;margin:10px 0}
+    .panel p{color:#c7c3ba;margin:0 0 16px}
+    .panel p:last-child{margin-bottom:0}
+    .versus{display:grid;grid-template-columns:1fr auto 1fr;gap:15px;align-items:center;margin:20px 0 24px}
+    .fighter{text-align:left}.fighter.right{text-align:right}
+    .fighter strong{display:block;font-family:"Barlow Condensed";font-size:2.05rem;line-height:.9;text-transform:uppercase}
+    .fighter span{font-size:.78rem;color:var(--muted)}
+    .vs{font-family:"Barlow Condensed";font-style:italic;color:var(--red);font-size:1.25rem;font-weight:900}
+    .tale{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:18px 0}
+    .tale div{padding:12px 8px;text-align:center;border-right:1px solid var(--line)}.tale div:last-child{border:0}
+    .tale b{display:block;font-family:"Barlow Condensed";font-size:1.35rem}.tale small{color:var(--dim);font-size:.66rem;text-transform:uppercase;letter-spacing:.08em}
+    .call{background:#0b0c0c;padding:14px 16px;border-left:4px solid var(--amber);font-size:.9rem}
+    .call strong{color:var(--amber)}
+    .timeline{display:grid;gap:0;margin-top:12px}
+    .time-row{display:grid;grid-template-columns:94px 1fr;gap:16px;padding:15px 0;border-bottom:1px solid var(--line)}
+    .time-row:last-child{border:0}.time{font-family:"Barlow Condensed";font-weight:800;font-size:1.15rem;color:var(--red)}
+    .time-row b{display:block}.time-row span{color:var(--muted);font-size:.82rem}
+    .signal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+    .signal{background:var(--panel);border:1px solid var(--line);padding:20px;min-height:170px}
+    .signal .num{font-family:"Barlow Condensed";font-size:3.5rem;font-weight:900;line-height:1;color:var(--red)}
+    .signal h3{margin:10px 0 6px;text-transform:uppercase;font-size:1.2rem}.signal p{color:var(--muted);font-size:.82rem;margin:0}
+    .subsection{margin-top:38px}
+    .story-list{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+    .story{background:var(--panel);padding:22px}.story h3{font-size:1.35rem;text-transform:uppercase;margin:0 0 8px}.story p{margin:0;color:var(--muted);font-size:.88rem}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}
+    .filter{background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:9px 13px;border-radius:2px;cursor:pointer;font-weight:700;font-size:.78rem}
+    .filter.active{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+    .card-list{display:grid;gap:10px}
+    .fight{background:var(--panel);border:1px solid var(--line)}
+    .fight[hidden]{display:none}
+    .fight summary{list-style:none;cursor:pointer;padding:18px 20px;display:grid;grid-template-columns:62px 1fr 210px 20px;gap:16px;align-items:center}
+    .fight summary::-webkit-details-marker{display:none}
+    .bout-no{font-family:"Barlow Condensed";font-size:1.3rem;font-weight:900;color:var(--dim)}
+    .names{font-family:"Barlow Condensed";font-size:1.45rem;font-weight:800;text-transform:uppercase;line-height:1}
+    .names small{display:block;font-family:"IBM Plex Sans";font-size:.68rem;color:var(--muted);font-weight:600;letter-spacing:.08em;margin-top:5px}
+    .odds{text-align:right;font-size:.78rem;color:var(--muted)}
+    .odds b{color:var(--ink)}
+    .chev{font-size:1.2rem;color:var(--red);transition:transform .2s}.fight[open] .chev{transform:rotate(45deg)}
+    .fight-body{padding:0 20px 22px 98px;border-top:1px solid var(--line)}
+    .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding-top:20px}
+    .detail-grid h4{margin:0 0 8px;font-size:.73rem;text-transform:uppercase;letter-spacing:.1em;color:var(--red)}
+    .detail-grid p,.detail-grid li{font-size:.86rem;color:#c4c0b8}
+    .detail-grid ul{margin:0;padding-left:18px}.detail-grid p{margin:0}
+    .pickline{margin-top:16px;background:#0b0c0c;padding:12px 14px;font-size:.82rem;color:#d2cec6}
+    .pickline b{color:var(--green)}
+    .source-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}
+    .source{font-size:.68rem;color:#c9c5bc;background:#242526;border:1px solid #3e4042;padding:4px 7px;text-decoration:none;border-radius:2px}
+    .source:hover{border-color:var(--red);color:white}
+    .board{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:22px}
+    .board-row{display:grid;grid-template-columns:1.5fr .8fr .8fr 1.1fr;gap:16px;align-items:center;background:var(--panel);padding:14px 16px;font-size:.84rem}
+    .board-row.header{background:#0a0b0b;color:var(--dim);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+    .board-row strong{font-family:"Barlow Condensed";font-size:1.1rem;text-transform:uppercase}
+    .confidence{height:5px;background:#303133;margin-top:5px}.confidence i{display:block;height:100%;background:var(--red)}
+    .badge{display:inline-block;padding:4px 7px;border-radius:2px;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;background:#2a2b2c;color:#ddd}
+    .badge.split{background:#4a3715;color:#ffd37b}.badge.strong{background:#173b2b;color:#72e1a5}
+    .note-box{border:1px solid var(--line);padding:18px;margin-top:20px;color:var(--muted);font-size:.83rem;background:#111213}
+    .source-groups{columns:2;column-gap:18px;margin-top:22px}
+    .source-card{break-inside:avoid;background:var(--panel);border:1px solid var(--line);padding:18px;margin:0 0 18px}
+    .source-card h3{font-size:1.2rem;text-transform:uppercase;margin:0 0 8px}.source-card p{font-size:.8rem;color:var(--muted);margin:0 0 10px}
+    .source-card a{display:block;color:#ddd;font-size:.78rem;margin:7px 0;overflow-wrap:anywhere}
+    footer{border-top:1px solid var(--line);padding:24px 0 36px;color:var(--dim);font-size:.75rem}
+    .noscript{padding:10px;background:#5d1718;color:white;text-align:center}
+
+    .dogs-intro{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-bottom:26px}
+    .dog-card{background:#151617;border:1px solid var(--line);padding:22px;position:relative;overflow:hidden}
+    .dog-card:before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--amber)}
+    .dog-card h3{font-size:1.65rem;line-height:1;text-transform:uppercase;margin:8px 0 10px}
+    .dog-card p{color:#c7c3ba;font-size:.88rem;margin:0}
+    .dog-price{font-family:"Barlow Condensed";font-size:2.4rem;font-weight:900;color:var(--amber);line-height:1}
+    .dog-meta{color:var(--muted);font-size:.75rem;margin-top:5px}
+    .model-board{margin:4px 0 26px}
+    .model-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+    .model-edge{background:#101112;padding:20px}
+    .edge-top{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
+    .edge-number{font-family:"Barlow Condensed";font-size:3.25rem;font-weight:900;line-height:.85;color:var(--green)}
+    .edge-label{font-family:"Barlow Condensed";font-size:1.25rem;font-weight:800;line-height:1;text-transform:uppercase}
+    .edge-market{color:var(--muted);font-size:.74rem;margin-top:5px}
+    .edge-meter{height:8px;background:#2b2d2e;margin:18px 0 12px;position:relative}
+    .edge-meter .market{position:absolute;inset:0 auto 0 0;background:var(--amber)}
+    .edge-meter .model{position:absolute;top:-4px;width:3px;height:16px;background:var(--green);transform:translateX(-1px)}
+    .model-edge p{font-size:.82rem;color:var(--muted);margin:0}.model-edge p strong{color:var(--ink)}
+    .edge-key{display:flex;gap:16px;flex-wrap:wrap;color:var(--dim);font-size:.67rem;margin-top:10px}.edge-key span:before{content:"";display:inline-block;width:9px;height:3px;margin-right:6px;vertical-align:middle;background:var(--amber)}.edge-key span:last-child:before{background:var(--green)}
+    .parlay{background:#0a0b0b;border-top:5px solid var(--amber);padding:25px;margin:24px 0}
+    .parlay-top{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start}
+    .parlay h3{font-size:2.25rem;text-transform:uppercase;line-height:.95;margin:8px 0}
+    .parlay-price{text-align:right}.parlay-price b{display:block;font-family:"Barlow Condensed";font-size:3rem;color:var(--amber);line-height:.9}.parlay-price span{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+    .legs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:20px}
+    .leg{background:var(--panel);padding:18px}.leg-no{color:var(--red);font-size:.68rem;text-transform:uppercase;letter-spacing:.11em;font-weight:800}.leg h4{font-family:"Barlow Condensed";font-size:1.45rem;text-transform:uppercase;margin:6px 0}.leg h4 span{color:var(--amber)}.leg p{font-size:.82rem;color:var(--muted);margin:0}
+    .return-strip{display:grid;grid-template-columns:repeat(3,1fr);margin-top:18px;border-block:1px solid var(--line)}
+    .return-strip div{padding:13px 10px;text-align:center;border-right:1px solid var(--line)}.return-strip div:last-child{border-right:0}.return-strip b{display:block;font-family:"Barlow Condensed";font-size:1.35rem}.return-strip small{color:var(--dim);font-size:.67rem;text-transform:uppercase;letter-spacing:.08em}
+    .risk-note{font-size:.78rem;color:var(--muted);margin-top:14px}
+    .grade-summary{display:grid;grid-template-columns:1.15fr repeat(3,.62fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:0 0 28px}
+    .grade-summary > div{background:#101112;padding:18px}
+    .grade-summary .grade-lead{border-left:4px solid var(--red)}
+    .grade-summary h3{font-size:1.45rem;line-height:1;text-transform:uppercase;margin:6px 0}
+    .grade-summary p{font-size:.8rem;color:var(--muted);margin:0}
+    .grade-stat b{display:block;font-family:"Barlow Condensed";font-size:2rem;line-height:1;text-transform:uppercase}
+    .grade-stat small{display:block;color:var(--muted);font-size:.67rem;text-transform:uppercase;letter-spacing:.08em;margin-top:5px}
+    .grade-stat.good b{color:var(--green)}.grade-stat.bad b{color:var(--red)}
+    .result-pill{display:inline-block;padding:3px 8px;border-radius:2px;font-size:.68rem;font-weight:800;line-height:1.25;text-transform:uppercase;letter-spacing:.05em;margin-left:8px;vertical-align:middle;white-space:nowrap;color:#fff}
+    .result-pill.won{background:#167345}.result-pill.lost{background:#9f2325}
+    .pickline.is-won{border-left:4px solid var(--green)}.pickline.is-lost{border-left:4px solid var(--red)}
+    .outcome-won{box-shadow:inset 4px 0 0 var(--green);background:linear-gradient(90deg,rgba(66,209,138,.09),transparent 42%),var(--panel)}
+    .outcome-lost{box-shadow:inset 4px 0 0 var(--red);background:linear-gradient(90deg,rgba(238,45,47,.09),transparent 42%),var(--panel)}
+    .parlay.outcome-lost{border-top-color:var(--red);box-shadow:inset 0 4px 0 rgba(238,45,47,.12)}
+    .parlay.outcome-won{border-top-color:var(--green);box-shadow:inset 0 4px 0 rgba(66,209,138,.12)}
+    .leg.outcome-won,.leg.outcome-lost,.board-row.outcome-won,.board-row.outcome-lost{background-color:#121414}
+    @media (forced-colors:active){.outcome-won,.outcome-lost{outline:2px solid currentColor;outline-offset:-2px}}
+    @media(max-width:800px){.dogs-intro{grid-template-columns:1fr}.model-grid{grid-template-columns:1fr}.parlay-top{grid-template-columns:1fr}.parlay-price{text-align:left}.legs{grid-template-columns:1fr}.return-strip{grid-template-columns:1fr}.return-strip div{border-right:0;border-bottom:1px solid var(--line)}.return-strip div:last-child{border-bottom:0}.grade-summary{grid-template-columns:1fr 1fr}.grade-summary .grade-lead{grid-column:1/-1}}
+    @media(max-width:800px){
+      .wrap{width:min(100% - 24px,var(--max))}.hero{padding-top:28px}.hero-grid{grid-template-columns:1fr;gap:28px}
+      h1{font-size:clamp(3.5rem,17vw,5.3rem)}.event-stamp{max-width:360px}
+      .facts{grid-template-columns:1fr 1fr}.fact{padding:15px 12px}.fact:nth-child(2){border-right:0}.fact:nth-child(-n+2){border-bottom:1px solid var(--line)}.fact:nth-child(3){padding-left:0}
+      .nav{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}.nav a{padding:10px 4px;font-size:.72rem;text-align:center}
+      main{padding-top:24px}.grid-2{grid-template-columns:1fr}.signal-grid{grid-template-columns:1fr}.signal{min-height:auto}
+      .story-list{grid-template-columns:1fr}.section-head{grid-template-columns:1fr}.section-note{text-align:left}
+      .fight summary{grid-template-columns:42px 1fr 20px;gap:10px}.odds{grid-column:2;text-align:left}.fight-body{padding:0 14px 18px}.detail-grid{grid-template-columns:1fr;gap:18px}
+      .board-row{grid-template-columns:1fr 1fr;gap:8px}.board-row.header{display:none}.board-row > div:nth-child(3),.board-row > div:nth-child(4){font-size:.74rem}
+      .source-groups{columns:1}.panel{padding:19px}.versus{gap:8px}.fighter strong{font-size:1.6rem}.tale{grid-template-columns:1fr}
+      .tale div{border-right:0;border-bottom:1px solid var(--line)}.tale div:last-child{border-bottom:0}
+    }
+    @media print{
+      .nav-shell{position:static}.nav{display:flex}.nav a{color:#000;border:1px solid #777}
+      .view,.view.active,.view:target,main:has(.view:target) .view.active:not(:target){display:block!important;break-before:page}
+      #overview{break-before:auto}.fight{break-inside:avoid}.source-card{break-inside:avoid}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.chev{transition:none}}
+  
+    .event-ribbon{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}.event-ribbon a{display:inline-flex;align-items:center;gap:8px;background:#191a1b;border:1px solid var(--line);padding:9px 12px;text-decoration:none;font-weight:700;font-size:.78rem}.event-ribbon a:first-child{border-color:var(--red)}
+    .event-tag{display:inline-block;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--red);margin-bottom:6px}.status-box{border:1px solid var(--line);background:#101112;padding:18px}.status-box strong{color:var(--amber)}
+    .event-block{margin-top:46px}.event-block:first-child{margin-top:0}.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:18px}.mini-grid>div{background:var(--panel);padding:16px}.mini-grid b{display:block;font-family:"Barlow Condensed";font-size:1.35rem;text-transform:uppercase}.mini-grid span{color:var(--muted);font-size:.78rem}
+    .dog-rank{font-family:"Barlow Condensed";font-size:2rem;font-weight:900;color:var(--dim);float:right;margin-left:12px}.watch{border-left-color:var(--blue)}.watch:before{background:var(--blue)}.unavailable{border-top:5px solid var(--dim)}
+    .parlay-hold{color:var(--amber);font-weight:800}.muted{color:var(--muted)}
+    @media(max-width:800px){.mini-grid{grid-template-columns:1fr}.event-ribbon{display:grid}.event-ribbon a{width:100%}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap hero-grid"><div>
+<div class="eyebrow"><span class="live-dot"></span> Fight night · Researched Sept. 14, 2026</div>
+<h1>One night. <span>Five fights.</span></h1>
+<p class="dek">DWCS 92’s five-prospect contract chase at the Meta Apex—full bout reads, predictions and the underdog value on tonight’s card.</p>
+<div class="event-ribbon"><a href="#dwcs-overview">Tue · DWCS 92 · Perea vs. Hunt</a></div>
+</div><div class="event-stamp"><div class="stamp-label">Tonight · Sept. 15</div><div class="stamp-big">Las Vegas · Meta Apex</div><div class="stamp-meta">Streams on Paramount+ in the U.S.</div></div></div></header>
+<div class="fact-strip"><div class="wrap facts"><div class="fact"><b>5 fights</b><span>DWCS 92</span></div><div class="fact"><b>Tue 7 PM ET</b><span>DWCS 92 · Meta Apex</span></div><div class="fact"><b>No PPV</b><span>Paramount+ in the U.S.</span></div></div></div>
+<div class="nav-shell"><nav aria-label="Guide sections" class="wrap nav"><a aria-current="page" class="active" data-view="overview" href="#overview">Overview</a><a data-view="card" href="#card">Fight card</a><a data-view="picks" href="#picks">Picks board</a><a data-view="sources" href="#sources">Sources</a></nav></div>
+<main class="wrap">
+<section class="view active" id="overview">
+<div class="event-block section-head" id="dwcs-overview"><h2>DWCS 92</h2><p class="section-note">Tuesday, Sept. 15 · Meta Apex, Las Vegas · 7:00 PM ET on Paramount+</p></div><div class="grid-2"><article class="panel feature"><div class="kicker">Featured bout · Welterweight</div><div class="versus"><div class="fighter"><strong>Mayton Perea</strong><span>8–3 · Ecuador · Olympic wrestler</span></div><div class="vs">VS</div><div class="fighter right"><strong>Zevan Hunt</strong><span>7–0 · Oklahoma · Versatile finisher</span></div></div><p>Perea’s three straight knockouts sit on top of a decorated wrestling base. Hunt is unbeaten with five first-round wins and a recent kneebar, but comes off roughly six months away. Tapology voters favor Hunt 76–24.</p><div class="call"><strong>Guide call:</strong> Hunt narrowly on versatility. Perea is the more interesting upset candidate if books eventually post him at a meaningful plus price; no moneyline was public Monday morning.</div><div class="source-row"><a class="source" href="https://www.ufc.com/news/dwcs-season-10-episode-6-preview-athletes-bouts-start-times-streaming" rel="noopener" target="_blank">UFC preview</a><a class="source" href="https://www.tapology.com/fightcenter/events/142725-contender-series-2026-week-6" rel="noopener" target="_blank">Tapology</a><a class="source" href="https://mmasucka.com/previews/dwcs-92-second-half-of-season-begins-tuesday/" rel="noopener" target="_blank">MMA Sucka</a></div></article><aside class="panel"><div class="kicker">How Tuesday runs</div><h3>Five fights. Five contracts at stake.</h3><p>All bouts are scheduled for three five-minute rounds. Sportradar’s estimate starts Williams–Monteiro at 7:00 PM ET and places Perea–Hunt around 8:20 PM ET; actual timing can shift.</p><div class="timeline"><div class="time-row"><div class="time">7:00 ET</div><div><b>Paramount+</b><span>All five fights from the Meta Apex</span></div></div><div class="time-row"><div class="time">~8:00</div><div><b>Co-feature</b><span>Cavalcanti vs. Ravello</span></div></div><div class="time-row"><div class="time">~8:20</div><div><b>Featured bout</b><span>Perea vs. Hunt</span></div></div></div></aside></div>
+<div class="mini-grid"><div><b>Abdullaev: 13–0</b><span>Every win by finish; the week’s most hyped prospect</span></div><div><b>Two second chances</b><span>Cavalcanti and Monteiro return after prior DWCS losses</span></div><div><b>One cancellation</b><span>Hailai–Reynoso is off; final card holds five bouts</span></div></div>
+</section>
+<section class="view" id="card"><div class="section-head"><h2>All 5 fights</h2><p class="section-note">Tap a matchup for profiles and the current prediction snapshot. Bout order follows Sportradar estimates.</p></div><div aria-label="Filter fight card" class="filters"><button class="filter active active" data-filter="all">All 5</button><button class="filter" data-filter="dwcs">DWCS 92</button><button class="filter" data-filter="close">Closest calls</button></div><div class="card-list">
+<details class="fight" data-card="dwcs" data-event="dwcs"><summary><div class="bout-no">D1</div><div class="names">Tyshawn Williams <span>vs.</span> Antônio Monteiro<small>Featherweight · ~7:00 PM ET</small></div><div class="odds">Moneyline <b>not posted</b></div><div class="chev">+</div></summary><div class="fight-body"><div class="detail-grid"><div><h4>Williams</h4><ul><li>8–0; lifelong wrestler with explosive athleticism</li><li>Trains under Eric Nicksick at Xtreme Couture</li><li>Tapology community support: 91%</li></ul></div><div><h4>Monteiro</h4><ul><li>18–5–1 (1 NC); Nova União BJJ base</li><li>Second DWCS appearance after a short-notice decision loss</li><li>Veteran route: force a dogfight and punish mistakes</li></ul></div></div><div class="pickline"><b>Prediction snapshot:</b> No hard expert pick or betting line was available Monday. Community lean: Williams 91–9; guide lean: Williams, with Monteiro’s veteran grappling the upset path.</div><div class="source-row"><a class="source" href="https://www.ufc.com/news/dwcs-season-10-episode-6-preview-athletes-bouts-start-times-streaming" rel="noopener" target="_blank">UFC preview</a><a class="source" href="https://www.tapology.com/fightcenter/events/142725-contender-series-2026-week-6" rel="noopener" target="_blank">Tapology</a></div></div></details>
+<details class="fight close" data-card="dwcs" data-event="dwcs"><summary><div class="bout-no">D2</div><div class="names">Luis Hernandez <span>vs.</span> Hugo Guillon<small>Middleweight · ~7:20 PM ET</small></div><div class="odds">Moneyline <b>not posted</b></div><div class="chev">+</div></summary><div class="fight-body"><div class="detail-grid"><div><h4>Hernandez</h4><ul><li>7–0; deputy sheriff in Miami-Dade</li><li>Composed, physical prospect</li><li>Tapology community support: 35%</li></ul></div><div><h4>Guillon</h4><ul><li>7–1; five first-round wins</li><li>Judo base; sparred with Dricus Du Plessis at CIT</li><li>Tapology community support: 65%</li></ul></div></div><div class="pickline"><b>Prediction snapshot:</b> No published expert pick or market price was found. Community and guide lean: Guillon, based on first-round finishing pressure and higher-level camp work.</div><div class="source-row"><a class="source" href="https://www.ufc.com/news/dwcs-season-10-episode-6-preview-athletes-bouts-start-times-streaming" rel="noopener" target="_blank">UFC preview</a><a class="source" href="https://www.tapology.com/fightcenter/events/142725-contender-series-2026-week-6" rel="noopener" target="_blank">Tapology</a></div></div></details>
+<details class="fight" data-card="dwcs" data-event="dwcs"><summary><div class="bout-no">D3</div><div class="names">Akbar Abdullaev <span>vs.</span> Ednilson Santos<small>Lightweight · ~7:40 PM ET</small></div><div class="odds">Moneyline <b>not posted</b></div><div class="chev">+</div></summary><div class="fight-body"><div class="detail-grid"><div><h4>Abdullaev</h4><ul><li>13–0; 100% finish rate</li><li>Stopped ONE champion Tang Kai but was title-ineligible</li><li>More than a year since his last fight</li></ul></div><div><h4>Santos</h4><ul><li>14–7–1; one-week replacement</li><li>Prepared for an October LFA bout</li><li>Trains under Alex Pereira’s coach Plinio Cruz</li></ul></div></div><div class="pickline"><b>Prediction snapshot:</b> Tapology voters favor Abdullaev 98–2; preview coverage calls him the week’s must-watch prospect. Guide lean: Abdullaev, but no wager until an actual line exists.</div><div class="source-row"><a class="source" href="https://mmajunkie.usatoday.com/story/sports/ufc/2026/09/08/ufc-one-dwcs-akbar-abdullaev-vs-ednilson-santos/91668588007/" rel="noopener" target="_blank">MMA Junkie</a><a class="source" href="https://www.tapology.com/fightcenter/events/142725-contender-series-2026-week-6" rel="noopener" target="_blank">Tapology</a></div></div></details>
+<details class="fight close" data-card="dwcs" data-event="dwcs"><summary><div class="bout-no">D4</div><div class="names">Igor Cavalcanti <span>vs.</span> Oscar Ravello<small>Middleweight · ~8:00 PM ET · co-feature</small></div><div class="odds">Moneyline <b>not posted</b></div><div class="chev">+</div></summary><div class="fight-body"><div class="detail-grid"><div><h4>Cavalcanti</h4><ul><li>13–2; all 13 wins by stoppage</li><li>Second DWCS appearance</li><li>Adaptive finisher; Tapology support 91%</li></ul></div><div><h4>Ravello</h4><ul><li>13–3–1; WGC middleweight and FFC welterweight champion</li><li>Taekwondo, Muay Thai and BJJ base</li><li>Finish-hunting regional champion</li></ul></div></div><div class="pickline"><b>Prediction snapshot:</b> No hard expert pick or moneyline was available. Community and guide lean: Cavalcanti; media previews expect an all-out war that could end by knockout.</div><div class="source-row"><a class="source" href="https://mmasucka.com/previews/dwcs-92-second-half-of-season-begins-tuesday/" rel="noopener" target="_blank">MMA Sucka</a><a class="source" href="https://www.tapology.com/fightcenter/events/142725-contender-series-2026-week-6" rel="noopener" target="_blank">Tapology</a></div></div></details>
+<details class="fight close" data-card="dwcs" data-event="dwcs"><summary><div class="bout-no">D5</div><div class="names">Mayton Perea <span>vs.</span> Zevan Hunt<small>Welterweight · ~8:20 PM ET · featured bout</small></div><div class="odds">Moneyline <b>not posted</b></div><div class="chev">+</div></summary><div class="fight-body"><div class="detail-grid"><div><h4>Perea</h4><ul><li>8–3; decorated Ecuadorian wrestler</li><li>Three straight knockout wins</li><li>Relentless pace and proven regional titles</li></ul></div><div><h4>Hunt</h4><ul><li>7–0; five first-round wins</li><li>Versatile finisher; last won by kneebar</li><li>About six months out—possible ring rust</li></ul></div></div><div class="pickline"><b>Prediction snapshot:</b> Tapology voters favor Hunt 76–24. Guide lean: Hunt narrowly; Perea’s wrestling and three-fight KO streak make him the best potential dog candidate if books open him at plus money.</div><div class="source-row"><a class="source" href="https://www.ufc.com/news/dwcs-season-10-episode-6-preview-athletes-bouts-start-times-streaming" rel="noopener" target="_blank">UFC preview</a><a class="source" href="https://mmasucka.com/previews/dwcs-92-second-half-of-season-begins-tuesday/" rel="noopener" target="_blank">MMA Sucka</a><a class="source" href="https://www.tapology.com/fightcenter/events/142725-contender-series-2026-week-6" rel="noopener" target="_blank">Tapology</a></div></div></details></div></section>
+<section class="view" id="picks"><div class="section-head"><h2>Picks board</h2><p class="section-note">Built for a plus-money bettor. Prices are Monday snapshots; shop lines and keep stakes small. Analysis, never a promise.</p></div>
+<div class="event-block section-head"><h2>DWCS 92 betting desk</h2><p class="section-note">No public moneylines were found Monday morning. Rankings below are watchlist priorities, not wagers.</p></div><div class="dogs-intro"><article class="dog-card watch"><span class="dog-rank">#1</span><div class="kicker">Potential dog watch</div><h3>Mayton Perea</h3><div class="dog-price">Price pending</div><p>Decorated wrestling plus three straight KOs against an unbeaten opponent coming off six months away. Worth considering only if Hunt opens as a clear favorite.</p></article><article class="dog-card watch"><span class="dog-rank">#2</span><div class="kicker">Potential dog watch</div><h3>Hugo Guillon</h3><div class="dog-price">Price pending</div><p>Five first-round wins and Dricus Du Plessis camp rounds. Community already favors him, so he may not open as the underdog.</p></article><article class="dog-card watch"><span class="dog-rank">#3</span><div class="kicker">Potential dog watch</div><h3>Antônio Monteiro</h3><div class="dog-price">Price pending</div><p>Second-shot veteran with Nova União grappling against an unbeaten prospect. Interesting only at a number that pays for the age and athleticism gap.</p></article></div>
+<article class="parlay unavailable"><div class="parlay-top"><div><div class="kicker">DWCS 92 · Parlay status</div><h3 class="parlay-hold">Hold—no verified lines.</h3><p class="dek">A real combined price cannot be calculated because no moneylines were publicly posted in the completed Monday research. Abdullaev, Williams and Cavalcanti are the strongest performance leans, but calling that an underdog parlay would be dishonest.</p></div><div class="parlay-price"><b>—</b><span>No fabricated odds</span></div></div><div class="source-row"><a class="source" href="https://www.tapology.com/fightcenter/events/142725-contender-series-2026-week-6" rel="noopener" target="_blank">Tapology card</a><a class="source" href="https://www.ufc.com/news/dwcs-season-10-episode-6-preview-athletes-bouts-start-times-streaming" rel="noopener" target="_blank">UFC preview</a></div></article>
+</section>
+<section class="view" id="sources"><div class="section-head"><h2>Research desk</h2><p class="section-note">Sources read Sept. 14, 2026. Links open the original reporting. Unresolved items are kept visible.</p></div><div class="source-groups">
+<article class="source-card"><h3>Official event &amp; viewing</h3><p>Event identity, venues, broadcasts and start times.</p><a href="https://www.ufc.com/news/dwcs-season-10-episode-6-preview-athletes-bouts-start-times-streaming" rel="noopener" target="_blank">UFC — DWCS Episode 6 preview</a></article>
+
+<article class="source-card"><h3>Main event</h3><p>Rematch history, fighter stakes, style and current line.</p></article>
+<article class="source-card"><h3>Upper card analysis</h3><p>Profiles, recent form and betting context.</p></article>
+<article class="source-card"><h3>DWCS 92</h3><p>Confirmed five-fight card, fighter profiles and card changes.</p><a href="https://www.tapology.com/fightcenter/events/142725-contender-series-2026-week-6" rel="noopener" target="_blank">Tapology — DWCS 92 card and community picks</a><a href="https://mmasucka.com/previews/dwcs-92-second-half-of-season-begins-tuesday/" rel="noopener" target="_blank">MMA Sucka — Week 6 preview</a><a href="https://mmajunkie.usatoday.com/story/sports/ufc/2026/09/08/ufc-one-dwcs-akbar-abdullaev-vs-ednilson-santos/91668588007/" rel="noopener" target="_blank">MMA Junkie — Santos replaces Figueroa</a><a href="https://www.nextknockout.com/fighters/wushamo-hailai-951543" rel="noopener" target="_blank">NextKnockout — Hailai bout cancelled</a></article>
+<article class="source-card"><h3>Known gaps</h3><p>No verified moneylines were public for any DWCS 92 bout at research time, so the betting desk is on hold until books post numbers. Bout order follows Sportradar estimates and can shift.</p></article>
+</div></section>
+</main>
+<footer>DWCS 92 edition researched Sept. 14, 2026. Odds are approximate ranges across named sources and can move. Analysis is informational, not betting advice.</footer>
+<script>
+    const navLinks=[...document.querySelectorAll('.nav a')]; const views=[...document.querySelectorAll('.view')];
+    function showView(id){const selected=views.some(v=>v.id===id)?id:'overview';navLinks.forEach(a=>{const on=a.dataset.view===selected;a.classList.toggle('active',on);if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});views.forEach(v=>v.classList.toggle('active',v.id===selected));}
+    navLinks.forEach(a=>a.addEventListener('click',()=>showView(a.dataset.view))); window.addEventListener('hashchange',()=>showView(location.hash.slice(1))); showView(location.hash.slice(1));
+    const filters=[...document.querySelectorAll('.filter')], fightEls=[...document.querySelectorAll('.fight')];
+    filters.forEach(btn=>btn.addEventListener('click',()=>{filters.forEach(b=>b.classList.toggle('active',b===btn));const f=btn.dataset.filter;fightEls.forEach(card=>{let show=f==='all'||card.dataset.event===f||card.dataset.card===f||(f==='prelim'&&card.dataset.event==='ufc'&&(card.dataset.card==='prelim'||card.dataset.card==='early'))||(f==='close'&&card.classList.contains('close'));card.hidden=!show;})}));
+  </script>
+</body>
+</html>
